@@ -22,8 +22,11 @@ app.use(express.static("views"));
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-
-mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true });
+var MONGODDB_URI =
+    process.env.MONGODDB_URI || "mongodb://localhost/unit18Populater";
+    
+// mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true });
+mongoose.connect(MONGODDB_URI, { userNewUrlParser: true });
 
 app.get("/scrape", function (req, res) {
     // First, we grab the body of the html with axios
