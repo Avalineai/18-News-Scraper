@@ -23,8 +23,8 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 var MONGODDB_URI =
-    process.env.MONGODDB_URI || "mongodb://localhost/unit18Populater";
-    
+    process.env.MONGODDB_URI || "mongodb://localhost/mongoHeadlines";
+
 // mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true });
 mongoose.connect(MONGODDB_URI, { userNewUrlParser: true });
 
