@@ -2,7 +2,11 @@ var express = require("express");
 var logger = require("morgan");
 var mongoose = require("mongoose");
 
+
 var exphbs = require("express-handlebars");
+
+//var routes = require("./controllers/burgers_controller.js");
+// app.use(routes);
 
 var axios = require("axios");
 var cheerio = require("cheerio");
@@ -18,12 +22,8 @@ app.use(express.static("views"));
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-var MONGODDB_URI =
-    process.env.MONGODDB_URI || "mongodb://localhost/mongoHeadlines";
 
-//"mongodb://localhost/mongoHeadlines";
-// mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true });
-mongoose.connect(MONGODDB_URI, { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true });
 
 app.get("/scrape", function (req, res) {
     // First, we grab the body of the html with axios

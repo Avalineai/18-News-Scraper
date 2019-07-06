@@ -7,17 +7,16 @@
         <div class="col">
             <ol>
                 {{#each dbArticle}}
-                    {{#unless devoured}}
+                    
                         <li>
-                            {{title}}               
-                            <button type="button" class="btn btn-outline-success eaten" data-id="{{id}}" data-eaten="true">
+                            <div>{{title}}</div>           
+                            <button type="button" class="btn btn-outline-success" data-id="{{id}}">
                                 Save It!
                             </button>
+                        
+                            <a href="{{link}}">{{link}}</a>
                         </li>
-                        <li>
-                            {{link}}
-                        </li>
-                    {{/unless}}
+                    
                 {{/each}}
             </ol>
             
@@ -25,13 +24,7 @@
 
         <div class="col">
             <ol class="list-group">
-            {{#each burger_data}}
-                {{#if devoured}}
-                    <li class="list-group-item">
-                        {{burger_name}}
-                    </li>
-                {{/if}}
-            {{/each}}
+
             </ol>
         </div>
     </div>
@@ -41,8 +34,8 @@
                 <h2>Add a Note</h2>
                 <form class="create-form">
                     <div class="form-group">
-                        <label for="add-burger">Note:</label>
-                        <input type="text" id="add-burger" name="user-burger">
+                        <label for="add-note">Note:</label>
+                        <input type="text" id="add-note" name="user-note">
                     </div>
 
                     <button class="btn btn-primary" type="submit">Add Note</button>
@@ -53,38 +46,5 @@
 </div>
 
 <script>
-        $(".create-form").on("submit", function(event) {
-    // Make sure to preventDefault on a submit event.
-        event.preventDefault();
-        
-        var userBurger = {
-        burger_name: $("#add-burger").val().trim(),
-        };
-        // Send the POST request.
-        $.ajax("/api/burgers", {
-            type: "POST",
-            data: userBurger
-        }).then(
-        function() {
-            // Reload the page to get the updated list
-            location.reload();
-        });
-    });
-    $(".eaten").on("click", function(event) {
-        var id = $(this).data("id");
-        var isDevoured = $(this).data("eaten");
-        var burgerCondition = {
-            devoured: isDevoured
-        };
-        // Send the PUT request.
-        $.ajax("/api/burgers/" + id, {
-            type: "PUT",
-            data: burgerCondition
-        }).then(
-        function() {
-            console.log("changed devoured to", isDevoured);
-            // Reload the page to get the updated list
-            location.reload();
-        });
-    });
+
 </script>
